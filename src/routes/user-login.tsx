@@ -15,7 +15,7 @@ function UserLogin() {
 
   return (
     <div className="relative flex min-h-screen items-center justify-center bg-background px-5 py-10">
-      <div className="absolute left-5 top-5"><BackButtonUL /></div>
+      <div className="absolute left-5 top-5"><BackButton fallback="/" /></div>
       <form
         onSubmit={(e) => {
           e.preventDefault();
