@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { NavBar } from "../components/nav-bar";
+import { BackButton } from "../components/back-button";
 import { useStore } from "../lib/form-store";
 import { FileText, Plus } from "lucide-react";
 
@@ -15,7 +16,8 @@ function AdminDashboard() {
     <div className="min-h-screen bg-background text-foreground">
       <NavBar />
       <main className="mx-auto max-w-6xl px-5 py-10">
-        <div className="flex flex-wrap items-center justify-between gap-4">
+        <BackButton fallback="/" />
+        <div className="mt-4 flex flex-wrap items-center justify-between gap-4">
           <div>
             <h1 className="text-2xl font-semibold sm:text-3xl">Admin Dashboard</h1>
             <p className="mt-1 text-sm text-muted-foreground">Overview of all forms and responses.</p>
