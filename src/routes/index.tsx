@@ -75,19 +75,23 @@ function Landing() {
             Your gateway to everything happening at{" "}
             <span className="text-foreground">SRM Easwari Engineering College</span>.
           </p>
-          <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <Link
-              to="/user-login"
-              className="w-full rounded-lg bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground shadow-[var(--shadow-glow)] transition hover:opacity-90 sm:w-auto"
-            >
-              Login as Student
-            </Link>
-            <Link
-              to="/admin-login"
-              className="w-full rounded-lg border border-border bg-card px-6 py-3 text-sm font-semibold text-foreground transition hover:bg-secondary sm:w-auto"
-            >
-              Login as Admin
-            </Link>
+          <div className="mt-10 w-full max-w-xl rounded-2xl border border-border bg-card/70 p-6">
+            <p className="text-sm font-medium text-foreground">How would you like to continue?</p>
+            <p className="mt-1 text-xs text-muted-foreground">Choose your role to sign in.</p>
+            <div className="mt-5 grid gap-3 sm:grid-cols-2">
+              <Link
+                to="/user-login"
+                className="rounded-xl bg-primary px-5 py-4 text-center text-sm font-semibold text-primary-foreground shadow-[var(--shadow-glow)] transition hover:opacity-90"
+              >
+                Student Login
+              </Link>
+              <Link
+                to="/admin-login"
+                className="rounded-xl border border-border bg-background px-5 py-4 text-center text-sm font-semibold text-foreground transition hover:border-primary/40 hover:bg-secondary"
+              >
+                Admin Login
+              </Link>
+            </div>
           </div>
         </section>
 

@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { NavBar } from "../components/nav-bar";
+import { BackButton } from "../components/back-button";
 import { useStore } from "../lib/form-store";
 
 export const Route = createFileRoute("/responses")({
@@ -14,7 +15,8 @@ function Responses() {
     <div className="min-h-screen bg-background text-foreground">
       <NavBar />
       <main className="mx-auto max-w-6xl px-5 py-10">
-        <h1 className="text-2xl font-semibold sm:text-3xl">Responses</h1>
+        <BackButton fallback="/admin-dashboard" />
+        <h1 className="mt-4 text-2xl font-semibold sm:text-3xl">Responses</h1>
         <p className="mt-1 text-sm text-muted-foreground">
           All submissions across every form ({responses.length} total).
         </p>
@@ -46,7 +48,7 @@ function Responses() {
                   <td className="px-4 py-3 text-muted-foreground">{r.email}</td>
                   <td className="px-4 py-3">{r.department}</td>
                   <td className="max-w-xs truncate px-4 py-3 text-muted-foreground">{r.message}</td>
-                  <td className="px-4 py-3 text-muted-foreground">
+                  <td className="px-4 py-3 text-muted-foreground" suppressHydrationWarning>
                     {new Date(r.submittedAt).toLocaleString()}
                   </td>
                 </tr>

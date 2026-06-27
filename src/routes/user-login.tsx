@@ -1,5 +1,6 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
+import { BackButton } from "@/components/back-button";
 import clLogo from "@/assets/cl-logo.asset.json";
 
 export const Route = createFileRoute("/user-login")({
@@ -13,7 +14,8 @@ function UserLogin() {
   const [password, setPassword] = useState("");
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-5 py-10">
+    <div className="relative flex min-h-screen items-center justify-center bg-background px-5 py-10">
+      <div className="absolute left-5 top-5"><BackButton fallback="/" /></div>
       <form
         onSubmit={(e) => {
           e.preventDefault();

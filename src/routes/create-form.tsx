@@ -1,6 +1,7 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import { NavBar } from "../components/nav-bar";
+import { BackButton } from "../components/back-button";
 import { useStore } from "../lib/form-store";
 
 export const Route = createFileRoute("/create-form")({
@@ -18,7 +19,8 @@ function CreateForm() {
     <div className="min-h-screen bg-background text-foreground">
       <NavBar />
       <main className="mx-auto max-w-2xl px-5 py-10">
-        <h1 className="text-2xl font-semibold sm:text-3xl">Create a new form</h1>
+        <BackButton fallback="/admin-dashboard" />
+        <h1 className="mt-4 text-2xl font-semibold sm:text-3xl">Create a new form</h1>
         <p className="mt-1 text-sm text-muted-foreground">
           Every form collects: Name, Email, Department, and Message.
         </p>
