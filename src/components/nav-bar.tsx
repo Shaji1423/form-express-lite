@@ -32,7 +32,7 @@ export function NavBar() {
             Responses
           </Link>
           <Link
-            to="/user-login"
+            to="/"
             className="ml-2 rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground shadow-[var(--shadow-glow)] transition hover:opacity-90"
           >
             Login
