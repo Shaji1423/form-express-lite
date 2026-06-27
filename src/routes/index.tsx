@@ -3,6 +3,7 @@ import { FileText, Mic, Sparkles, ArrowRight } from "lucide-react";
 import clLogo from "@/assets/cl-logo.asset.json";
 import easwariLogo from "@/assets/easwari-logo.asset.json";
 import { NavBar } from "@/components/nav-bar";
+import { GlowDots } from "@/components/glow-dots";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -43,18 +44,9 @@ const cards = [
 function Landing() {
   return (
     <div className="relative min-h-screen overflow-hidden bg-background text-foreground">
-      {/* Animated star field */}
-      <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,oklch(0.62_0.24_295/0.15),transparent_55%)]" />
-        <div
-          className="absolute inset-0 opacity-60"
-          style={{
-            backgroundImage:
-              "radial-gradient(circle at 12% 18%, oklch(0.66 0.25 350) 1px, transparent 1.5px), radial-gradient(circle at 78% 32%, oklch(0.62 0.24 295) 1px, transparent 1.5px), radial-gradient(circle at 42% 68%, oklch(0.66 0.25 350) 1px, transparent 1.5px), radial-gradient(circle at 88% 82%, oklch(0.62 0.24 295) 1px, transparent 1.5px), radial-gradient(circle at 25% 88%, oklch(0.66 0.25 350) 1px, transparent 1.5px)",
-            backgroundSize: "420px 420px",
-          }}
-        />
-      </div>
+      {/* Glowing purple/pink dots */}
+      <GlowDots count={110} />
+
 
       <NavBar />
 
