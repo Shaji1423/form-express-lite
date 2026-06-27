@@ -49,7 +49,7 @@ export function GlowDots({ count = 90 }: { count?: number }) {
               width: `${d.size}px`,
               height: `${d.size}px`,
               backgroundColor: color,
-              boxShadow: `0 0 ${d.size * 2}px ${d.size * 0.6}px ${color}, 0 0 ${d.size * 5}px ${d.size}px ${color}`,
+              boxShadow: `0 0 ${(d.size * 3).toFixed(1)}px ${(d.size * 0.5).toFixed(1)}px ${color}, 0 0 ${(d.size * 7).toFixed(1)}px ${(d.size * 1.2).toFixed(1)}px ${color}`,
               animationDelay: d.delay,
               animationDuration: d.duration,
             }}
