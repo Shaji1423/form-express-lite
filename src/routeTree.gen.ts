@@ -15,6 +15,7 @@ import { Route as CreateFormRouteImport } from './routes/create-form'
 import { Route as AdminLoginRouteImport } from './routes/admin-login'
 import { Route as AdminDashboardRouteImport } from './routes/admin-dashboard'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as FillFormIdRouteImport } from './routes/fill-form.$id'
 
 const UserLoginRoute = UserLoginRouteImport.update({
   id: '/user-login',
@@ -46,6 +47,11 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const FillFormIdRoute = FillFormIdRouteImport.update({
+  id: '/fill-form/$id',
+  path: '/fill-form/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -54,6 +60,7 @@ export interface FileRoutesByFullPath {
   '/create-form': typeof CreateFormRoute
   '/user-dashboard': typeof UserDashboardRoute
   '/user-login': typeof UserLoginRoute
+  '/fill-form/$id': typeof FillFormIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -62,6 +69,7 @@ export interface FileRoutesByTo {
   '/create-form': typeof CreateFormRoute
   '/user-dashboard': typeof UserDashboardRoute
   '/user-login': typeof UserLoginRoute
+  '/fill-form/$id': typeof FillFormIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -71,6 +79,7 @@ export interface FileRoutesById {
   '/create-form': typeof CreateFormRoute
   '/user-dashboard': typeof UserDashboardRoute
   '/user-login': typeof UserLoginRoute
+  '/fill-form/$id': typeof FillFormIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -81,6 +90,7 @@ export interface FileRouteTypes {
     | '/create-form'
     | '/user-dashboard'
     | '/user-login'
+    | '/fill-form/$id'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -89,6 +99,7 @@ export interface FileRouteTypes {
     | '/create-form'
     | '/user-dashboard'
     | '/user-login'
+    | '/fill-form/$id'
   id:
     | '__root__'
     | '/'
@@ -97,6 +108,7 @@ export interface FileRouteTypes {
     | '/create-form'
     | '/user-dashboard'
     | '/user-login'
+    | '/fill-form/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -106,6 +118,7 @@ export interface RootRouteChildren {
   CreateFormRoute: typeof CreateFormRoute
   UserDashboardRoute: typeof UserDashboardRoute
   UserLoginRoute: typeof UserLoginRoute
+  FillFormIdRoute: typeof FillFormIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -152,6 +165,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/fill-form/$id': {
+      id: '/fill-form/$id'
+      path: '/fill-form/$id'
+      fullPath: '/fill-form/$id'
+      preLoaderRoute: typeof FillFormIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -162,6 +182,7 @@ const rootRouteChildren: RootRouteChildren = {
   CreateFormRoute: CreateFormRoute,
   UserDashboardRoute: UserDashboardRoute,
   UserLoginRoute: UserLoginRoute,
+  FillFormIdRoute: FillFormIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
