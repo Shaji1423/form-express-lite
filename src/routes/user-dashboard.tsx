@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { NavBar } from "../components/nav-bar";
+import { BackButton } from "../components/back-button";
 import { useStore } from "../lib/form-store";
 import { FileText, ArrowRight } from "lucide-react";
 
@@ -15,7 +16,8 @@ function UserDashboard() {
     <div className="min-h-screen bg-background text-foreground">
       <NavBar />
       <main className="mx-auto max-w-6xl px-5 py-10">
-        <h1 className="text-2xl font-semibold sm:text-3xl">Available forms</h1>
+        <BackButton fallback="/" />
+        <h1 className="mt-4 text-2xl font-semibold sm:text-3xl">Available forms</h1>
         <p className="mt-1 text-sm text-muted-foreground">Pick a form below to fill it out.</p>
 
         <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
