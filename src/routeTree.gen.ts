@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as UserLoginRouteImport } from './routes/user-login'
 import { Route as UserDashboardRouteImport } from './routes/user-dashboard'
+import { Route as ResponsesRouteImport } from './routes/responses'
 import { Route as CreateFormRouteImport } from './routes/create-form'
 import { Route as AdminLoginRouteImport } from './routes/admin-login'
 import { Route as AdminDashboardRouteImport } from './routes/admin-dashboard'
@@ -25,6 +26,11 @@ const UserLoginRoute = UserLoginRouteImport.update({
 const UserDashboardRoute = UserDashboardRouteImport.update({
   id: '/user-dashboard',
   path: '/user-dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResponsesRoute = ResponsesRouteImport.update({
+  id: '/responses',
+  path: '/responses',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CreateFormRoute = CreateFormRouteImport.update({
@@ -58,6 +64,7 @@ export interface FileRoutesByFullPath {
   '/admin-dashboard': typeof AdminDashboardRoute
   '/admin-login': typeof AdminLoginRoute
   '/create-form': typeof CreateFormRoute
+  '/responses': typeof ResponsesRoute
   '/user-dashboard': typeof UserDashboardRoute
   '/user-login': typeof UserLoginRoute
   '/fill-form/$id': typeof FillFormIdRoute
@@ -67,6 +74,7 @@ export interface FileRoutesByTo {
   '/admin-dashboard': typeof AdminDashboardRoute
   '/admin-login': typeof AdminLoginRoute
   '/create-form': typeof CreateFormRoute
+  '/responses': typeof ResponsesRoute
   '/user-dashboard': typeof UserDashboardRoute
   '/user-login': typeof UserLoginRoute
   '/fill-form/$id': typeof FillFormIdRoute
@@ -77,6 +85,7 @@ export interface FileRoutesById {
   '/admin-dashboard': typeof AdminDashboardRoute
   '/admin-login': typeof AdminLoginRoute
   '/create-form': typeof CreateFormRoute
+  '/responses': typeof ResponsesRoute
   '/user-dashboard': typeof UserDashboardRoute
   '/user-login': typeof UserLoginRoute
   '/fill-form/$id': typeof FillFormIdRoute
@@ -88,6 +97,7 @@ export interface FileRouteTypes {
     | '/admin-dashboard'
     | '/admin-login'
     | '/create-form'
+    | '/responses'
     | '/user-dashboard'
     | '/user-login'
     | '/fill-form/$id'
@@ -97,6 +107,7 @@ export interface FileRouteTypes {
     | '/admin-dashboard'
     | '/admin-login'
     | '/create-form'
+    | '/responses'
     | '/user-dashboard'
     | '/user-login'
     | '/fill-form/$id'
@@ -106,6 +117,7 @@ export interface FileRouteTypes {
     | '/admin-dashboard'
     | '/admin-login'
     | '/create-form'
+    | '/responses'
     | '/user-dashboard'
     | '/user-login'
     | '/fill-form/$id'
@@ -116,6 +128,7 @@ export interface RootRouteChildren {
   AdminDashboardRoute: typeof AdminDashboardRoute
   AdminLoginRoute: typeof AdminLoginRoute
   CreateFormRoute: typeof CreateFormRoute
+  ResponsesRoute: typeof ResponsesRoute
   UserDashboardRoute: typeof UserDashboardRoute
   UserLoginRoute: typeof UserLoginRoute
   FillFormIdRoute: typeof FillFormIdRoute
@@ -135,6 +148,13 @@ declare module '@tanstack/react-router' {
       path: '/user-dashboard'
       fullPath: '/user-dashboard'
       preLoaderRoute: typeof UserDashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/responses': {
+      id: '/responses'
+      path: '/responses'
+      fullPath: '/responses'
+      preLoaderRoute: typeof ResponsesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/create-form': {
@@ -180,6 +200,7 @@ const rootRouteChildren: RootRouteChildren = {
   AdminDashboardRoute: AdminDashboardRoute,
   AdminLoginRoute: AdminLoginRoute,
   CreateFormRoute: CreateFormRoute,
+  ResponsesRoute: ResponsesRoute,
   UserDashboardRoute: UserDashboardRoute,
   UserLoginRoute: UserLoginRoute,
   FillFormIdRoute: FillFormIdRoute,
