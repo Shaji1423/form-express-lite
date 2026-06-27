@@ -21,13 +21,13 @@ export function GlowDots({ count = 90 }: { count?: number }) {
       const r2 = rand(i + 99);
       const r3 = rand(i + 233);
       const r4 = rand(i + 451);
-      const size = 1.5 + r3 * 3.5; // 1.5 - 5px
+      const size = 1 + r3 * 1.5; // 1 - 2.5 px (small dots)
       return {
         left: `${r1 * 100}%`,
         top: `${r2 * 100}%`,
         size,
-        delay: `${(r4 * 6).toFixed(2)}s`,
-        duration: `${(2.5 + r3 * 3).toFixed(2)}s`,
+        delay: `${(r4 * 8).toFixed(2)}s`,
+        duration: `${(6 + r3 * 4).toFixed(2)}s`, // slow: 6 - 10 s
         hue: r4 > 0.5 ? "pink" : "purple",
       };
     });
@@ -49,7 +49,7 @@ export function GlowDots({ count = 90 }: { count?: number }) {
               width: `${d.size}px`,
               height: `${d.size}px`,
               backgroundColor: color,
-              boxShadow: `0 0 ${d.size * 2}px ${d.size * 0.6}px ${color}, 0 0 ${d.size * 5}px ${d.size}px ${color}`,
+              boxShadow: `0 0 ${(d.size * 3).toFixed(1)}px ${(d.size * 0.5).toFixed(1)}px ${color}, 0 0 ${(d.size * 7).toFixed(1)}px ${(d.size * 1.2).toFixed(1)}px ${color}`,
               animationDelay: d.delay,
               animationDuration: d.duration,
             }}
