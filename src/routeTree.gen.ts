@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as UserLoginRouteImport } from './routes/user-login'
+import { Route as CreateFormRouteImport } from './routes/create-form'
 import { Route as AdminLoginRouteImport } from './routes/admin-login'
 import { Route as AdminDashboardRouteImport } from './routes/admin-dashboard'
 import { Route as IndexRouteImport } from './routes/index'
@@ -17,6 +18,11 @@ import { Route as IndexRouteImport } from './routes/index'
 const UserLoginRoute = UserLoginRouteImport.update({
   id: '/user-login',
   path: '/user-login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CreateFormRoute = CreateFormRouteImport.update({
+  id: '/create-form',
+  path: '/create-form',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AdminLoginRoute = AdminLoginRouteImport.update({
@@ -39,12 +45,14 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/admin-dashboard': typeof AdminDashboardRoute
   '/admin-login': typeof AdminLoginRoute
+  '/create-form': typeof CreateFormRoute
   '/user-login': typeof UserLoginRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/admin-dashboard': typeof AdminDashboardRoute
   '/admin-login': typeof AdminLoginRoute
+  '/create-form': typeof CreateFormRoute
   '/user-login': typeof UserLoginRoute
 }
 export interface FileRoutesById {
@@ -52,20 +60,33 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/admin-dashboard': typeof AdminDashboardRoute
   '/admin-login': typeof AdminLoginRoute
+  '/create-form': typeof CreateFormRoute
   '/user-login': typeof UserLoginRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/admin-dashboard' | '/admin-login' | '/user-login'
+  fullPaths:
+    | '/'
+    | '/admin-dashboard'
+    | '/admin-login'
+    | '/create-form'
+    | '/user-login'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/admin-dashboard' | '/admin-login' | '/user-login'
-  id: '__root__' | '/' | '/admin-dashboard' | '/admin-login' | '/user-login'
+  to: '/' | '/admin-dashboard' | '/admin-login' | '/create-form' | '/user-login'
+  id:
+    | '__root__'
+    | '/'
+    | '/admin-dashboard'
+    | '/admin-login'
+    | '/create-form'
+    | '/user-login'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AdminDashboardRoute: typeof AdminDashboardRoute
   AdminLoginRoute: typeof AdminLoginRoute
+  CreateFormRoute: typeof CreateFormRoute
   UserLoginRoute: typeof UserLoginRoute
 }
 
@@ -76,6 +97,13 @@ declare module '@tanstack/react-router' {
       path: '/user-login'
       fullPath: '/user-login'
       preLoaderRoute: typeof UserLoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/create-form': {
+      id: '/create-form'
+      path: '/create-form'
+      fullPath: '/create-form'
+      preLoaderRoute: typeof CreateFormRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/admin-login': {
@@ -106,6 +134,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AdminDashboardRoute: AdminDashboardRoute,
   AdminLoginRoute: AdminLoginRoute,
+  CreateFormRoute: CreateFormRoute,
   UserLoginRoute: UserLoginRoute,
 }
 export const routeTree = rootRouteImport
