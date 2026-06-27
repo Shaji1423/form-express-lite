@@ -147,3 +147,20 @@
     color: var(--color-foreground);
   }
 }
+
+@keyframes glow-pulse {
+  0%, 100% {
+    opacity: 0.25;
+    transform: scale(0.85);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+}
+
+@utility animate-glow-pulse {
+  animation: glow-pulse var(--tw-duration, 3s) ease-in-out infinite;
+  will-change: opacity, transform;
+}
+
