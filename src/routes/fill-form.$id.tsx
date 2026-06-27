@@ -76,7 +76,8 @@ function FillForm() {
     <div className="min-h-screen bg-background text-foreground">
       <NavBar />
       <main className="mx-auto max-w-2xl px-5 py-10">
-        <h1 className="text-2xl font-semibold sm:text-3xl">{form.title}</h1>
+        <BackButton fallback="/user-dashboard" />
+        <h1 className="mt-4 text-2xl font-semibold sm:text-3xl">{form.title}</h1>
         <p className="mt-1 text-sm text-muted-foreground">{form.description}</p>
 
         <form
