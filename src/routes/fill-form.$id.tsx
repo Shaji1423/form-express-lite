@@ -2,9 +2,10 @@ import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import { NavBar } from "../components/nav-bar";
 import { useStore } from "../lib/form-store";
+import { CheckCircle2 } from "lucide-react";
 
 export const Route = createFileRoute("/fill-form/$id")({
-  head: () => ({ meta: [{ title: "Fill Form — FormFlow" }] }),
+  head: () => ({ meta: [{ title: "Fill Form — Campus Life" }] }),
   component: FillForm,
 });
 
@@ -22,11 +23,11 @@ function FillForm() {
 
   if (!form) {
     return (
-      <div className="min-h-screen bg-white text-slate-900">
+      <div className="min-h-screen bg-background text-foreground">
         <NavBar />
-        <main className="mx-auto max-w-2xl px-6 py-16 text-center">
+        <main className="mx-auto max-w-2xl px-5 py-16 text-center">
           <h1 className="text-xl font-semibold">Form not found</h1>
-          <Link to="/user-dashboard" className="mt-4 inline-block text-blue-600 hover:underline">
+          <Link to="/user-dashboard" className="mt-4 inline-block text-primary hover:underline">
             Back to dashboard
           </Link>
         </main>
@@ -36,18 +37,21 @@ function FillForm() {
 
   if (submitted) {
     return (
-      <div className="min-h-screen bg-white text-slate-900">
+      <div className="min-h-screen bg-background text-foreground">
         <NavBar />
-        <main className="mx-auto max-w-2xl px-6 py-16">
-          <div className="rounded-xl border border-green-200 bg-green-50 p-8 text-center">
-            <h1 className="text-2xl font-semibold text-green-700">Response submitted</h1>
-            <p className="mt-2 text-sm text-green-700">
-              Thanks for filling out “{form.title}”. Your response has been recorded.
+        <main className="mx-auto max-w-2xl px-5 py-16">
+          <div className="rounded-2xl border border-primary/30 bg-card p-8 text-center shadow-[var(--shadow-glow)]">
+            <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-primary/20 text-primary">
+              <CheckCircle2 className="h-7 w-7" />
+            </div>
+            <h1 className="mt-4 text-2xl font-semibold text-foreground">Response submitted</h1>
+            <p className="mt-2 text-sm text-muted-foreground">
+              Thanks for filling out "{form.title}". Your response has been recorded.
             </p>
             <div className="mt-6 flex justify-center gap-3">
               <Link
                 to="/user-dashboard"
-                className="rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700"
+                className="rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground hover:opacity-90"
               >
                 Back to dashboard
               </Link>
@@ -56,7 +60,7 @@ function FillForm() {
                   setName(""); setEmail(""); setDepartment(""); setMessage("");
                   setSubmitted(false);
                 }}
-                className="rounded-lg border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50"
+                className="rounded-lg border border-border bg-card px-4 py-2 text-sm font-medium text-foreground hover:bg-secondary"
               >
                 Submit another
               </button>
@@ -68,11 +72,11 @@ function FillForm() {
   }
 
   return (
-    <div className="min-h-screen bg-white text-slate-900">
+    <div className="min-h-screen bg-background text-foreground">
       <NavBar />
-      <main className="mx-auto max-w-2xl px-6 py-10">
-        <h1 className="text-2xl font-semibold">{form.title}</h1>
-        <p className="mt-1 text-sm text-slate-600">{form.description}</p>
+      <main className="mx-auto max-w-2xl px-5 py-10">
+        <h1 className="text-2xl font-semibold sm:text-3xl">{form.title}</h1>
+        <p className="mt-1 text-sm text-muted-foreground">{form.description}</p>
 
         <form
           onSubmit={(e) => {
@@ -87,34 +91,34 @@ function FillForm() {
             });
             setSubmitted(true);
           }}
-          className="mt-8 space-y-5 rounded-xl border border-slate-200 p-6"
+          className="mt-8 space-y-5 rounded-2xl border border-border bg-card p-6"
         >
           {[
             { label: "Name", value: name, set: setName, type: "text", placeholder: "Jane Doe" },
-            { label: "Email", value: email, set: setEmail, type: "email", placeholder: "jane@example.com" },
-            { label: "Department", value: department, set: setDepartment, type: "text", placeholder: "Marketing" },
+            { label: "Email", value: email, set: setEmail, type: "email", placeholder: "jane@srmeaswari.ac.in" },
+            { label: "Department", value: department, set: setDepartment, type: "text", placeholder: "CSE" },
           ].map((f) => (
             <div key={f.label}>
-              <label className="block text-sm font-medium text-slate-700">{f.label}</label>
+              <label className="block text-sm font-medium text-foreground">{f.label}</label>
               <input
                 required
                 type={f.type}
                 value={f.value}
                 onChange={(e) => f.set(e.target.value)}
                 placeholder={f.placeholder}
-                className="mt-1 w-full rounded-md border border-slate-300 px-3 py-2 text-sm outline-none focus:border-blue-500"
+                className="mt-1 w-full rounded-md border border-border bg-input px-3 py-2.5 text-sm text-foreground outline-none focus:border-primary"
               />
             </div>
           ))}
           <div>
-            <label className="block text-sm font-medium text-slate-700">Message</label>
+            <label className="block text-sm font-medium text-foreground">Message</label>
             <textarea
               required
               rows={4}
               value={message}
               onChange={(e) => setMessage(e.target.value)}
               placeholder="Write your message..."
-              className="mt-1 w-full rounded-md border border-slate-300 px-3 py-2 text-sm outline-none focus:border-blue-500"
+              className="mt-1 w-full rounded-md border border-border bg-input px-3 py-2.5 text-sm text-foreground outline-none focus:border-primary"
             />
           </div>
 
@@ -122,13 +126,13 @@ function FillForm() {
             <button
               type="button"
               onClick={() => navigate({ to: "/user-dashboard" })}
-              className="rounded-lg border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50"
+              className="rounded-lg border border-border bg-card px-4 py-2 text-sm font-medium text-foreground hover:bg-secondary"
             >
               Cancel
             </button>
             <button
               type="submit"
-              className="rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-blue-700"
+              className="rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground shadow-[var(--shadow-glow)] transition hover:opacity-90"
             >
               Submit
             </button>
