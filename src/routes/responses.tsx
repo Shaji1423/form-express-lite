@@ -48,7 +48,7 @@ function Responses() {
                   <td className="px-4 py-3 text-muted-foreground">{r.email}</td>
                   <td className="px-4 py-3">{r.department}</td>
                   <td className="max-w-xs truncate px-4 py-3 text-muted-foreground">{r.message}</td>
-                  <td className="px-4 py-3 text-muted-foreground">
+                  <td className="px-4 py-3 text-muted-foreground" suppressHydrationWarning>
                     {new Date(r.submittedAt).toLocaleString()}
                   </td>
                 </tr>
